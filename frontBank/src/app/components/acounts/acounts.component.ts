@@ -17,7 +17,7 @@ export class AcountsComponent implements OnInit {
   nombre: any;
   userId: any;
   admin: any;
-
+  
   ngOnInit() {
     this.nombre = this.route.snapshot.paramMap.get('nombre');
     this.userId = this.route.snapshot.paramMap.get('id');

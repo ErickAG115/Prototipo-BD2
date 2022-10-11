@@ -24,20 +24,22 @@
 
 
 </mat-toolbar>
-<div >
-    <div class="row">
-      <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-12 p-4" *ngFor="let cuenta of listCuentas">
-          <div class="card card-photo">
-              <div class="card-header">
 
-                <div class="divUsersInformation">
-                  <h1>{{cuenta.id_val}}
-                  {{cuenta.type}}
-                  {{cuenta.amount}}</h1>
-                </div>
-              </div>
-
-          </div>
-      </div>
-    </div>
-    </div>
+	<div class="mainDiv">
+		<div class="divTitle">
+			<h1 style="margin-top: 0;text-align:center;font-size: 25px;">Cuentas</h1>
+		</div>
+	
+		<br style="height:100%">
+		<div class="divCenter">
+			<div *ngFor="let cuenta of listCuentas" class="divUsers">
+	
+				<div class="divUsersInformation">
+					<h1> Numero de cuenta: {{cuenta.id_val}}</h1>
+					<h1>Tipo:  {{cuenta.type}}</h1>
+					<h1> Saldo: {{ cuenta.amount }}</h1>
+				</div>
+			</div>
+		</div>
+		<br>
+	</div>
