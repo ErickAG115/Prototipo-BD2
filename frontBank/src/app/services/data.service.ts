@@ -9,32 +9,32 @@ import { cuenta } from 'src/interfaces/cuentas.interface';
   })
 
 
-export class DataServiceService { 
+export class DataServiceService {
 
     constructor(private http: HttpClient) { }
- 
-    url = "http://localhost:"
+
+    url = "http://localhost:3000"
 
 loggin(name:String,password:String){
         let data = {
             name,password
         }
-        return this.http.get<usuario>(this.url + data);
+        return this.http.get<any>(this.url + '/cassandra/return_by_name/'+ name+'/'+password);
   }
 
 
   get_user(identificacion: string) {
 
-    return this.http.get<usuario[]>(this.url + '/users/' + identificacion);
+    return this.http.get<usuario[]>(this.url + '/cassandra/return/' + identificacion);
 
   }
 
   get_cuentas() {
-    return this.http.get<cuenta[]>(this.url + '/cuentas');
+    return this.http.get<cuenta[]>(this.url + '/cassandra/return_cuentas');
   }
 
   get_cuentas_cliente(identificacion: string) {
-    return this.http.get<cuenta[]>(this.url + '/cuentas/' + identificacion);
+    return this.http.get<cuenta[]>(this.url + '/cassandra/return_by_id/' + identificacion);
   }
 
 

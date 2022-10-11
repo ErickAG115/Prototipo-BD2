@@ -13,30 +13,32 @@ export class AcountsComponent implements OnInit {
     private route: ActivatedRoute) { }
 
 
-  listCuentas: cuenta[] = [];
+  listCuentas: any[] = [];
+  nombre: any;
   userId: any;
   admin: any;
-  itsAdmin: boolean = false;
 
-  ngOnInit(): void {
-
+  ngOnInit() {
+    this.nombre = this.route.snapshot.paramMap.get('nombre');
     this.userId = this.route.snapshot.paramMap.get('id');
     this.admin = this.route.snapshot.paramMap.get('admin');
     this.listCuentas = [];
+    console.log("admin", this.admin)
     this.LoadAccounts(this.userId);
 
   }
 
-  async LoadAccounts(ident: string) {
-    if (this.admin == 0) {
+  LoadAccounts(ident: string) {
+    console.log("loadaccounts", this.admin)
+
+    if (this.admin == "false") {
       this.dataService.get_cuentas_cliente(this.userId).
         subscribe(cuentas => {
           this.listCuentas = cuentas;
-          console.log("Accouts: ", this.listCuentas);
+          console.log("Accounts: ", this.listCuentas);
         })
     }
     else {
-      this.itsAdmin = true;
       this.dataService.get_cuentas().
         subscribe(cuentas => {
           this.listCuentas = cuentas;
@@ -47,7 +49,7 @@ export class AcountsComponent implements OnInit {
   }
 
   goToHome(){
-    this.router.navigate(['/home', this.userId]);
+    this.router.navigate(['/home', this.userId, this.nombre, this.admin]);
   }
 
 }

@@ -15,39 +15,43 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(){
-  
+
   }
 
   user:any;
   id:any;
 
-  async login(name:any, password:any) {
+  login(name:any, password:any) : boolean{
     console.log(name.value, password.value)
     this.dataService.loggin(
-      name.value, 
-      password)
+      name.value,
+      password.value)
       .subscribe(
-        res => {
-          this.user = res;
-          console.log(this.user);
-        },
-        
-      )
+         res => {
+            console.log(res)
+            let response:any = res;
+            this.user = {
+              nombre: response.first_name,
+              cedula: response.id_val,
+              admin: response.admin
+            };
+            console.log(this.user);
+           if (this.user!= null) {
+             this.id = this.user.cedula;
 
-      if (this.user!= null) {
-      
-        this.id = this.user.cedula;
-        
+             this.router.navigate(['/home', this.user.cedula, this.user.nombre,  this.user.admin]);
+           } else {
+             Swal.fire({
+               icon: 'error',
+               title: 'Oops...',
+               text: 'No estás registrado!',
+               timer:3000
+             })
+           }
+          },
+        )
 
-        this.router.navigate(['/home', this.id]);
-      } else {
-        await Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'No estás registrado!',
-        })
-      }
-      return false
+      return false;
     }
 }
 

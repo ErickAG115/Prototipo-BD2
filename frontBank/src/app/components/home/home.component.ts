@@ -12,35 +12,24 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataServiceService, private router: Router,
     private route: ActivatedRoute) { }
 
-id : any;
-nombre: any;
-identificacion: any;
-
-admin: any;
-itsAdmin: boolean = false;
+user : any;
 
 listUser: usuario[] = [];
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
+
+    this.user = {
+      nombre: this.route.snapshot.paramMap.get('nombre'),
+      cedula: this.route.snapshot.paramMap.get('id'),
+      admin: this.route.snapshot.paramMap.get('admin')
+    }
    // this.get_user();
   }
 
 
-  get_user() {
-    this.dataService.get_user(this.id).subscribe(user => {
-      // console.log(user);
-      this.listUser = user;
-      this.nombre = this.listUser[0].nombre;
-      this.identificacion = this.id;
 
-      if (this.listUser[0].admin == 1) {
-        this.itsAdmin = true;
-      } 
-    })
-  }
 
   goToAccounts() {
-    this.router.navigate(['/accounts', this.id, this.admin]);
+    this.router.navigate(['/accounts', this.user.cedula, this.user.nombre, this.user.admin]);
   }
 
 }

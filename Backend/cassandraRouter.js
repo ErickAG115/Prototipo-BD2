@@ -13,28 +13,35 @@ async function getCassConn(){
 }
 
 //Atención de petición de lista de clientes
-router.get("/return_by_name", async (req, res) => {
-    const query = "SELECT username, password, first_name, last_name, admin, ID_val FROM user WHERE ID_val = ? ALLOW FILTERING;";
+router.get("/return_by_name/:name/:password", async (req, res) => {
+    const query = "SELECT username, password, first_name, last_name, admin, ID_val FROM User WHERE username = ? AND password = ? ALLOW FILTERING;";
     const client = await getCassConn();
-    const result = await client.execute(query, [req.body.ID_val]);
+    const result = await client.execute(query, [req.params.name, req.params.password]);
     await client.shutdown();
-    res.send(result);
+    if (result.err) {
+        return res.send("No existe el usuario");
+    }
+    else if (result.rows.length >= 1) {
+        console.log(result.rows[0])
+        return res.send(result.rows[0]);
+    }
 });
 
 router.get("/return_cuentas", async (req, res) => {
-    const query = "SELECT ID, type, amount FROM account";
+    const query = "SELECT ID_val, type, amount FROM account;";
     const client = await getCassConn();
-    const result = await client.execute(query, [""]);
+    const result = await client.execute(query);
     await client.shutdown();
-    res.send(result);
+    res.send(result.rows);
 });
 
-router.get("/return_by_id", async (req, res) => {
-    const query = "SELECT ID, type, amount FROM account WHERE ID =  ? ALLOW FILTERING;";
+router.get("/return_by_id/:id", async (req, res) => {
+    const query = "SELECT ID_val, type, amount FROM account WHERE id_val =  ?;";
     const client = await getCassConn();
-    const result = await client.execute(query, [req.body.ID_val]);
+    const result = await client.execute(query, [req.params.id]);
     await client.shutdown();
-    res.send(result);
+    console.log(result.rows)
+    res.send(result.rows);
 });
 
 router.get("/return_users", async (req, res) => {

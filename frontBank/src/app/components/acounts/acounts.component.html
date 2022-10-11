@@ -7,7 +7,7 @@
 
 
 
-	<a routerLink="/login" routerLinkActive="active">
+	<a routerLink="/" routerLinkActive="active">
 		<button mat-button>
 			<mat-icon>power_settings_new</mat-icon>
 			LogOut
@@ -29,12 +29,14 @@
       <div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-12 p-4" *ngFor="let cuenta of listCuentas">
           <div class="card card-photo">
               <div class="card-header">
-                  {{cuenta.numero}}
-                  {{cuenta.tipo}}
-                  {{cuenta.monto}}
+
+                <div class="divUsersInformation">
+                  <h1>{{cuenta.id_val}}
+                  {{cuenta.type}}
+                  {{cuenta.amount}}</h1>
+                </div>
               </div>
-              
-              
+
           </div>
       </div>
     </div>

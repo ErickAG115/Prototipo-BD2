@@ -1,4 +1,4 @@
-/node_modules
 /.idea
+/Backend/node_modules
 /frontBank/node_modules
 /frontBank/.angular

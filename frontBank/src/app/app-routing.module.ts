@@ -10,14 +10,14 @@ const routes: Routes = [
   },
 
   {
-    path: 'home/:id',
+    path: 'home/:id/:nombre/:admin',
     component: HomeComponent
   },
   {
-    path: 'accounts/:id/:admin',
+    path: 'accounts/:id/:nombre/:admin',
     component: AcountsComponent
   },
-  
+
 ];
 
 @NgModule({

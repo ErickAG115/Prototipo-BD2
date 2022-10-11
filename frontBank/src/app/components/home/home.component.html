@@ -20,8 +20,8 @@
 			</button>
 		</a>
 	</ng-template> -->
-	
-	<a routerLink="/login" routerLinkActive="active">
+
+	<a routerLink="/" routerLinkActive="active">
 		<button mat-button>
 			<mat-icon>power_settings_new</mat-icon>
 			LogOut
@@ -33,8 +33,8 @@
 	<div class="example-card">
 		<mat-card>
 			<mat-card-header>
-				<mat-card-title>{{'Nombre: '+ this.nombre }}</mat-card-title>
-				<mat-card-subtitle>{{'Id: ' + this.identificacion }}</mat-card-subtitle>
+				<mat-card-title>{{'Nombre: '+ this.user.nombre }}</mat-card-title>
+				<mat-card-subtitle>{{'Id: ' + this.user.cedula }}</mat-card-subtitle>
 			</mat-card-header>
 			<div class="crop-image">
 				<img src = "./../../../../assets/user.png" alt=" User" class="crop-image">

@@ -1,5 +1,5 @@
 export interface cuenta {
-    numero:String,
-    tipo:String,
-    monto:number
+    id_val:String,
+    type:String,
+    amount:number
 }
