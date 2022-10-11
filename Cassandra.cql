@@ -7,7 +7,16 @@ CREATE TABLE IF NOT EXISTS "prototype".USER (
                                                   first_name varchar,
                                                   last_name varchar,
                                                   birthdate date,
+                                                  admin boolean,
+                                                  ID_val varchar,
                                                   PRIMARY KEY (username)
+);
+
+CREATE TABLE IF NOT EXISTS "prototype".ACCOUNT (
+                                                  ID_val varchar,
+                                                  type varchar,
+                                                  amount double,
+                                                  PRIMARY KEY (ID)
 );
 
 
